@@ -38,6 +38,7 @@ module.exports = {
 				var sourcepath = curRoom.findPath(Game.spawns['Spawn1'].pos, source.pos);
 				// assuming drones have WORK, CARRY, MOVE, then travel time is 3 times the path length, and it takes 25 ticks to fill a CARRY
 				var droneRatio = sourcepath.length * 2 / 25;
+				Memory.sources[source.id] = {};
 				Memory.sources[source.id].dronesRequired = (droneRatio * droneSpaces);
 				console.log('just added Memory.sources');
 				totalDronesRequired += (droneRatio * droneSpaces);
