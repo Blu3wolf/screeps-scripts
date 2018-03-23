@@ -14,6 +14,10 @@ module.exports.loop = function () {
 	var creepCount = Object.keys(Game.creeps).length;
 	console.log('you have creeps: ' + creepCount);
 	
+	if(!Memory.sources) {
+		utils.checkDronesRequired();
+	}
+	
 	for(source in Memory.sources) {
 		if(source.harvesters.length < source.dronesRequired) {
 			var newName = Game.spawns['Spawn1'].createCreep([WORK,CARRY,MOVE], undefined, {memory: {source: source}});
