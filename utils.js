@@ -1,5 +1,4 @@
-module.exports = 
-{
+module.exports = {
 	// Function checks to see if results are cached, if not runs actual function
 	function checkDronesRequired(){
 		if (Memory.DronesRequired)
