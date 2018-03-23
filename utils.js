@@ -10,7 +10,7 @@ module.exports = {
 			// currently only works for one room anyway
 			var curRoom = Game.spawns['Spawn1'].room;
 			var sources = curRoom.find(FIND_SOURCES);
-			var dronesRequired = 0;
+			var totalDronesRequired = 0;
 			for (var source of sources)
 			{
 				// find number of spaces to harvest, and the length of the path from source to spawn or extension
@@ -38,10 +38,10 @@ module.exports = {
 				var sourcepath = curRoom.findPath(Game.spawns['Spawn1'].pos, source.pos);
 				// assuming drones have WORK, CARRY, MOVE, then travel time is 3 times the path length, and it takes 25 ticks to fill a CARRY
 				var droneRatio = sourcepath.length * 2 / 25;
-				dronesRequired += (droneRatio * droneSpaces);
+				Memory.sources[source.id].dronesRequired = (droneRatio * droneSpaces);
+				totalDronesRequired += (droneRatio * droneSpaces);
 			}
-			Memory.DronesRequired = dronesRequired;
-			return dronesRequired;
+			return totalDronesRequired;
 		}
 		
 	}

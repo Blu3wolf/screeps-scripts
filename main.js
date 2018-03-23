@@ -11,9 +11,12 @@ module.exports.loop = function () {
 	var creepCount = Object.keys(Game.creeps).length;
 	console.log('you have creeps: ' + creepCount);
 	
-	if(creepCount < dronesRequired) {
-		var newName = Game.spawns['Spawn1'].createCreep([WORK,CARRY,MOVE], undefined);
-		console.log('Spawning new harvester: ' + newName);
+	for(source in Memory.sources) {
+		if(source.harvesters.length < source.dronesRequired) {
+			var newName = Game.spawns['Spawn1'].createCreep([WORK,CARRY,MOVE], undefined, {memory: {source: source}});
+			source.harvesters.push(newName);
+			console.log('Spawning new harvester: ' + newName);
+		}
 	}
 	
 	for(var name in Game.creeps) {
