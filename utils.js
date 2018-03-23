@@ -8,7 +8,7 @@ module.exports = {
 		else
 		{
 			// currently only works for one room anyway
-			var curRoom = Game.spawns[0].room;
+			var curRoom = Game.spawns['Spawn1'].room;
 			var sources = curRoom.find(FIND_SOURCES);
 			var dronesRequired = 0;
 			for (var source of sources)
