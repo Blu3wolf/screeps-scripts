@@ -8,6 +8,16 @@ module.exports.loop = function () {
     
     console.log('Hello World!');
 	
+	for(var name in Memory.creeps) {
+		if(!Game.creeps[name]) {
+			if(Memory.creeps[name].source) {
+				delete Memory.sources[Memory.creeps[name].source].harvesters[name];
+			}
+			delete Memory.creeps[name];
+			console.log('clearing old creep ' + name + ' from memory');
+		}
+	}
+	
 	var dronesRequired = utils.checkDronesRequired();
     console.log('you will need ' + dronesRequired + ' drones for this rooms sources');
 	
@@ -21,8 +31,8 @@ module.exports.loop = function () {
 	
 	for(var sourceid in Memory.sources) {
 		if(Memory.sources[sourceid].harvesters.length < Memory.sources[sourceid].dronesRequired) {
-			var newName = Game.spawns['Spawn1'].createCreep([WORK,CARRY,MOVE], undefined, {memory: {source: sourceid}});
-			Memory.sources[sourceid].harvesters.push(newName);
+			var newName = Game.spawns['Spawn1'].createCreep([WORK,CARRY,MOVE], undefined, {memory: {source: sourceid}, {role: 'harvester'}});
+			Memory.sources[sourceid].harvesters.newName = Memory.creeps.newName;
 			console.log('Spawning new harvester: ' + newName);
 		}
 	}
