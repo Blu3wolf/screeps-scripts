@@ -1,5 +1,6 @@
 var utils = require('utils');
 var roleHarvester = require('role.harvester');
+var roleHarvester = require('role.upgrader');
 
 module.exports.loop = function () {
     
