@@ -16,6 +16,7 @@ module.exports.loop = function () {
 	
 	if(!Memory.sources) {
 		utils.checkDronesRequired();
+		console.log('I couldnt find Memory.sources');
 	}
 	
 	for(var sourceid in Memory.sources) {

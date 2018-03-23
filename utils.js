@@ -44,7 +44,7 @@ module.exports = {
 				console.log('just added Memory.sources');
 				totalDronesRequired += (droneRatio * droneSpaces);
 				
-				// Memory.DronesRequired = totalDronesRequired; // remember to uncomment me for performance saving after testing~!
+				Memory.DronesRequired = totalDronesRequired; // remember to uncomment me for performance saving after testing~!
 			}
 			return totalDronesRequired;
 		}
