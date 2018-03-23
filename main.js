@@ -20,7 +20,7 @@ module.exports.loop = function () {
 	
 	for(var sourceid in Memory.sources) {
 		if(Memory.sources[sourceid].harvesters.length < Memory.sources[sourceid].dronesRequired) {
-			var newName = Game.spawns['Spawn1'].createCreep([WORK,CARRY,MOVE], undefined, {memory: {source: source}});
+			var newName = Game.spawns['Spawn1'].createCreep([WORK,CARRY,MOVE], undefined, {memory: {source: sourceid}});
 			Memory.sources[sourceid].harvesters.push(newName);
 			console.log('Spawning new harvester: ' + newName);
 		}
