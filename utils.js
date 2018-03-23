@@ -1,8 +1,7 @@
 module.exports = 
 {
 	// Function checks to see if results are cached, if not runs actual function
-	function checkDronesRequired()
-	{
+	function checkDronesRequired(){
 		if (Memory.DronesRequired)
 		{
 			return Memory.DronesRequired;
@@ -10,8 +9,9 @@ module.exports =
 		else
 		{
 			// currently only works for one room anyway
-			var curRoom = Game.rooms[0];
+			var curRoom = Game.spawns[0].room;
 			var sources = curRoom.find(FIND_SOURCES);
+			var dronesRequired = 0;
 			for (var source of sources)
 			{
 				// find number of spaces to harvest, and the length of the path from source to spawn or extension
@@ -35,25 +35,15 @@ module.exports =
 					}
 				}
 				// droneSpaces now equals number of points around source that are not walls or obstacles
-				
+				// next job is to figure out distance from the spawn to the source
+				var sourcepath = curRoom.findPath(Game.spawns[0].pos, source.pos);
+				// assuming drones have WORK, CARRY, MOVE, then travel time is 3 times the path length, and it takes 25 ticks to fill a CARRY
+				var droneRatio = sourcepath.length * 2 / 25;
+				dronesRequired += (droneRatio * droneSpaces);
 			}
+			Memory.DronesRequired = dronesRequired;
+			return dronesRequired;
 		}
 		
 	}
-	
-	
 }
-
-[
-    {x: 5, y: 10, type: 'creep', creep: {...}},
-    {x: 5, y: 10, type: 'terrain', terrain: 'swamp'},
-    {x: 6, y: 10, type: 'terrain', terrain: 'swamp'},
-    {x: 7, y: 10, type: 'terrain', terrain: 'swamp'},
-    {x: 5, y: 11, type: 'terrain', terrain: 'plain'},
-    {x: 6, y: 11, type: 'structure', structure: {...}},
-    {x: 6, y: 11, type: 'terrain', terrain: 'swamp'},
-    {x: 7, y: 11, type: 'terrain', terrain: 'wall'}
-]
-
-OBSTACLE_OBJECT_TYPES.IndexOf()
-
