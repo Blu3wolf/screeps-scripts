@@ -32,10 +32,6 @@ var roleHarvester = {
             }
         }
 	}
-	
-	assignSource: function(creep, sourceID) {
-		creep.memory.source = sourceID;
-	}
 };
 
 module.exports = roleHarvester;
