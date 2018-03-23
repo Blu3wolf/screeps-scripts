@@ -18,7 +18,7 @@ module.exports.loop = function () {
 		utils.checkDronesRequired();
 	}
 	
-	for(source in Memory.sources) {
+	for(var source in Memory.sources) {
 		if(source.harvesters.length < source.dronesRequired) {
 			var newName = Game.spawns['Spawn1'].createCreep([WORK,CARRY,MOVE], undefined, {memory: {source: source}});
 			source.harvesters.push(newName);
