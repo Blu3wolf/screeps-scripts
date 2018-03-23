@@ -2,6 +2,8 @@ var utils = require('utils');
 var roleHarvester = require('role.harvester');
 var roleHarvester = require('role.upgrader');
 
+Memory.sources = {};
+
 module.exports.loop = function () {
     
     console.log('Hello World!');
